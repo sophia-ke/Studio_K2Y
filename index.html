@@ -143,19 +143,31 @@ section{padding-block:clamp(60px,8vw,110px)}
 
 /* ---------- bottleneck ---------- */
 .bottleneck{background:#000;color:#fff;padding-block:clamp(120px,16vw,220px);overflow:hidden}
-.bottleneck .wrap{position:relative;min-height:min(60vh,520px);display:flex;align-items:center;justify-content:center}
-.bottleneck .bn-headline{font-family:var(--display);font-size:clamp(36px,6vw,80px);font-weight:400;line-height:1.08;letter-spacing:-.02em;text-align:center;color:#fff;margin:0;max-width:18ch}
+.bottleneck .wrap{position:relative;min-height:min(72vh,680px);display:flex;align-items:center;justify-content:center}
+.bottleneck .bn-headline{font-family:var(--display);font-size:clamp(36px,6vw,80px);font-weight:400;line-height:1.08;letter-spacing:-.02em;text-align:center;color:#fff;margin:0;max-width:18ch;position:relative;z-index:1}
 .bottleneck .bn-dot{color:#ff4a2b;display:inline-block}
-.bottleneck .bn-label{position:absolute;color:rgba(255,255,255,.35);font-size:14px;letter-spacing:.01em;padding:10px 16px;background:rgba(255,255,255,.03);border-radius:6px;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis}
-.bottleneck .bn-l1{top:8%;left:4%}
-.bottleneck .bn-l2{top:14%;right:4%}
-.bottleneck .bn-l3{bottom:10%;right:10%}
+.bottleneck .bn-label{position:absolute;color:#fff;font-size:15px;letter-spacing:.01em;padding:14px 24px 14px 140px;background:linear-gradient(90deg, rgba(255,110,140,0) 0%, rgba(255,110,140,.28) 100%);white-space:nowrap;opacity:0;transform:translateY(16px);transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
+.bottleneck.in-view .bn-label{opacity:1;transform:none}
+.bottleneck.in-view .bn-l1{transition-delay:.05s}
+.bottleneck.in-view .bn-l2{transition-delay:.2s}
+.bottleneck.in-view .bn-l3{transition-delay:.35s}
+.bottleneck.in-view .bn-l4{transition-delay:.5s}
+.bottleneck.in-view .bn-l5{transition-delay:.65s}
+.bottleneck .bn-l1{top:2%;right:0}
+.bottleneck .bn-l2{top:21%;left:16%}
+.bottleneck .bn-l3{bottom:27%;left:0}
+.bottleneck .bn-l4{bottom:12%;right:0}
+.bottleneck .bn-l5{bottom:-2%;left:16%}
 @media (max-width:720px){
-  .bottleneck .bn-label{font-size:12px;padding:8px 12px}
-  .bottleneck .bn-l1{top:2%;left:0;right:auto}
-  .bottleneck .bn-l2{top:14%;right:0;left:auto}
-  .bottleneck .bn-l3{bottom:6%;right:0;left:0;text-align:center}
+  .bottleneck .wrap{min-height:min(84vh,620px)}
+  .bottleneck .bn-label{font-size:12px;padding:10px 14px 10px 56px}
+  .bottleneck .bn-l1{top:0;right:0}
+  .bottleneck .bn-l2{top:13%;left:0}
+  .bottleneck .bn-l3{bottom:24%;left:0}
+  .bottleneck .bn-l4{bottom:11%;right:0}
+  .bottleneck .bn-l5{bottom:0;left:0}
 }
+@media (prefers-reduced-motion:reduce){.bottleneck .bn-label{opacity:1;transform:none;transition:none}}
 .sec-head{display:grid;gap:28px;grid-template-columns:1fr;margin-bottom:clamp(40px,5vw,60px)}
 @media (min-width:860px){.sec-head{grid-template-columns:1fr 1fr;gap:60px;align-items:end}}
 .sec-head h2{font-family:var(--display);font-size:clamp(40px,6vw,84px);line-height:1;letter-spacing:-.025em;font-weight:300}
@@ -330,9 +342,11 @@ img{max-width:100%}
   <!-- BOTTLENECK (problem statement) -->
   <section id="bottleneck" class="bottleneck">
     <div class="wrap">
-      <span class="bn-label bn-l1">Inconsistent quality across projects</span>
-      <span class="bn-label bn-l2">Too many vendors, not enough clarity</span>
-      <span class="bn-label bn-l3">Hard to maintain a strong visual direction</span>
+      <span class="bn-label bn-l1">Too many vendors, not enough clarity</span>
+      <span class="bn-label bn-l2">Inconsistent quality across projects</span>
+      <span class="bn-label bn-l3">Hiring in-house isn’t practical (yet)</span>
+      <span class="bn-label bn-l4">Hard to maintain a strong visual direction</span>
+      <span class="bn-label bn-l5">Endless revisions with no real progress</span>
       <h2 class="bn-headline">When design becomes<br>the bottleneck<span class="bn-dot">.</span></h2>
     </div>
   </section>
@@ -521,6 +535,16 @@ img{max-width:100%}
   });
 
   /* ---------- esc closes dialogs ---------- */
+  /* ---------- bottleneck: reveal tag lines when section reaches the viewport centre ---------- */
+  var bn=document.getElementById("bottleneck");
+  if(bn){
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){bn.classList.toggle("in-view",en.isIntersecting);});
+      },{threshold:.45}).observe(bn);
+    }else{bn.classList.add("in-view");}
+  }
+
   /* ---------- menu overlay ---------- */
   var menu=document.getElementById("menu"),menuBtn=document.getElementById("menuBtn");
   function openMenu(){menu.hidden=false;menuBtn.setAttribute("aria-expanded","true");document.body.style.overflow="hidden";}
