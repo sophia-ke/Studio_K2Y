@@ -9,31 +9,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap">
 <style>
 /* Pure black-and-white theme: white ground + black ink by day, black ground + white ink by night. One continuous page. */
+/* Single committed dark theme: background is always black, text always white. */
 :root{
-  --bg:#ededeb;           /* gertix warm off-white */
-  --fg:#141516;
-  --line:#141516;
-  --muted:#141516;
+  --bg:#000000;
+  --fg:#ffffff;
+  --line:#ffffff;
+  --muted:#ffffff;
   --muted-op:.6;
-  --panel:#e4e3e0;        /* subtle panel */
-  --art-a:#c7c6c2; --art-b:#141516; --art-c:#f0efed;
+  --panel:#0d0d0d;
+  --art-a:#2a2a2a; --art-b:#f2f2f2; --art-c:#111111;
   --display:"Manrope","Helvetica Neue",Arial,sans-serif;
   --mono:"Manrope","Helvetica Neue",Arial,sans-serif;
   --gutter-l:max(20px,env(safe-area-inset-left,0px));
   --gutter-r:max(20px,env(safe-area-inset-right,0px));
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#000000; --fg:#ffffff; --line:#ffffff; --muted:#ffffff;
-    --panel:#0d0d0d;
-    --art-a:#2a2a2a; --art-b:#f2f2f2; --art-c:#111111;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#000000; --fg:#ffffff; --line:#ffffff; --muted:#ffffff;
-  --panel:#0d0d0d;
-  --art-a:#2a2a2a; --art-b:#f2f2f2; --art-c:#111111;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -103,7 +91,8 @@ nav.desk a .n{opacity:.5;margin-right:6px}
 @media (min-width:860px){.hero-top{grid-template-columns:minmax(0,46ch) auto;gap:60px;align-items:start;justify-content:space-between}}
 .hero-top p{max-width:46ch;font-size:14px;opacity:.95;line-height:1.7}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
-.hero h1{font-family:var(--display);font-size:clamp(52px,13vw,180px);line-height:.92;letter-spacing:-.02em;font-weight:300;color:#fff}
+.hero h1{font-family:var(--display);font-size:clamp(56px,14vw,180px);line-height:.92;letter-spacing:-.02em;font-weight:300;color:#fff}
+@media (max-width:720px){.hero h1{font-size:16vw;line-height:.96}}
 .rotator{display:inline-block;color:#fff;min-height:1em}
 .rotator::after{content:"|";display:inline-block;color:#fff;margin-left:6px;font-weight:200;opacity:.75;animation:caret 1s steps(2) infinite;transform:translateY(-.04em)}
 @keyframes caret{50%{opacity:0}}
