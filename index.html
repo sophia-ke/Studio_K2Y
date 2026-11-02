@@ -127,14 +127,14 @@ background-size:128px 128px, 64px 64px, 64px 64px;background-position:0 0, 0 0, 
 @media (prefers-reduced-motion:reduce){.aurora{animation:none}.rotator{transition:none}.rotator::after{animation:none}}
 
 /* ---------- awards ticker ---------- */
-.ticker{background:#000;color:#fff;overflow:hidden;white-space:nowrap;padding-block:28px;border:0}
+.ticker{background:#000;color:#fff;overflow:hidden;white-space:nowrap;padding-block:38px;border:0}
 .ticker .track{display:inline-flex;animation:tick 42s linear infinite;will-change:transform}
-.ticker .aw{display:inline-flex;align-items:center;gap:14px;padding:0 40px}
-.ticker .aw-logo{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;height:34px}
-.ticker .aw-logo svg,.ticker .aw-logo img{display:block;max-height:34px;width:auto;object-fit:contain}
-.ticker .aw-txt{display:inline-flex;flex-direction:column;gap:3px}
-.ticker .aw b{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:-.01em;line-height:1.1;color:#fff}
-.ticker .aw small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;color:#fff}
+.ticker .aw{display:inline-flex;align-items:center;gap:20px;padding:0 68px}
+.ticker .aw-logo{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;height:54px}
+.ticker .aw-logo svg,.ticker .aw-logo img{display:block;max-height:54px;width:auto;object-fit:contain}
+.ticker .aw-txt{display:inline-flex;flex-direction:column;gap:4px}
+.ticker .aw b{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em;line-height:1.1;color:#fff}
+.ticker .aw small{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;color:#fff}
 @keyframes tick{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.ticker .track{animation:none}.btn i{transition:none}}
 
